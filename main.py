@@ -1,16 +1,36 @@
-# This is a sample Python script.
+import threading
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+def decimal_to_octal(decimal_num):
+    return oct(decimal_num).replace("0o", "")
 
+def convert_decimal(exit_flag):
+    try:
+        decimal_number = input("Введите целое десятичное число для перевода (или 'q' для выхода): ")
+        if decimal_number == 'q':
+            exit_flag = True
+        else:
+            decimal_number = int(decimal_number)
+            if decimal_number < 0:
+                print("Пожалуйста, введите положительное десятичное число.")
+            else:
+                octal_number = decimal_to_octal(decimal_number)
+                print(f"Десятичное число {decimal_number} в восьмеричной системе: {octal_number}")
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    except ValueError:
+        print("Ошибка: Введите целое десятичное число.")
 
+    if not exit_flag:
+        convert_decimal(exit_flag)
 
-# Press the green button in the gutter to run the script.
+def main():
+    exit_flag = False
+    # Создаем и запускаем поток для выполнения функции convert_decimal
+    thread = threading.Thread(target=convert_decimal, args=(exit_flag,))
+    thread.start()
+    # Ждем завершения потока
+    thread.join()
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    main()
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+

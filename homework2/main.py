@@ -24,11 +24,12 @@ def convert_decimal(exit_flag):
 
 def main():
     exit_flag = False
+    convert_decimal(exit_flag)
     # Создаем и запускаем поток для выполнения функции convert_decimal
-    thread = threading.Thread(target=convert_decimal, args=(exit_flag,))
-    thread.start()
+    #thread = threading.Thread(target=convert_decimal, args=(exit_flag,))
+    #thread.start()
     # Ждем завершения потока
-    thread.join()
+    #thread.join()
 
 if __name__ == '__main__':
     main()

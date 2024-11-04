@@ -2,6 +2,7 @@
 def decimal_to_octal(decimal_num):
     return oct(decimal_num).replace("0o", "")
 
+
 def convert_decimal(exit_flag):
     try:
         decimal_number = input("Введите целое десятичное число для перевода (или 'q' для выхода): ")
@@ -21,9 +22,11 @@ def convert_decimal(exit_flag):
     if not exit_flag:
         convert_decimal(exit_flag)
 
+
 def main():
     exit_flag = False
     convert_decimal(exit_flag)
+
 
 if __name__ == '__main__':
     main()
